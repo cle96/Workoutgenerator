@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_workouts"
+            android:icon="@drawable/baseline_fitness_center_24"
+            android:title="Workouts" />
+        <item
+            android:id="@+id/nav_manage"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Max weights" />
+        <item
+            android:id="@+id/nav_new"
+            android:icon="@drawable/baseline_fiber_new_24"
+            android:title="Create workout" />
+    </group>
+
+    <item android:title="Share">
+        <menu>
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Send" />
+        </menu>
+    </item>
+
+</menu>
