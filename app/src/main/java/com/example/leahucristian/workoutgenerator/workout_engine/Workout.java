@@ -84,7 +84,7 @@ public class Workout {
 
     public String printEntireWorkout() {
         String workout = "";
-        workout = "Start with: " + this.strength.getName() + " 4 repetition, max weight FOR 5 SETS\n ";
+        workout = "Start with: " + this.strength.getName() + " 4 repetition, max weight FOR 5 SETS at -> " + ExerciseHelper.getMax(this.strength.getName(), Type.STRENGTH)+"\n";
         workout += "~!REST FOR 2 MIN!~\n\n";
         for (WorkoutRoutine wr : routines) {
             workout += wr.returnEntireRoutine();

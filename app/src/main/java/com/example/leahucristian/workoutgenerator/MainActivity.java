@@ -1,5 +1,7 @@
 package com.example.leahucristian.workoutgenerator;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
@@ -15,10 +17,13 @@ import com.example.leahucristian.workoutgenerator.workout_engine.ExerciseStore;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    public static SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        preferences = getPreferences(Context.MODE_PRIVATE);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -87,8 +92,7 @@ public class MainActivity extends AppCompatActivity
             NewWorkout newWorkout = new NewWorkout();
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.fragment, newWorkout).commit();
-        }
-        else if (id == R.id.information) {
+        } else if (id == R.id.information) {
             setTitle("Information");
             InformationFragment info = new InformationFragment();
             FragmentManager fragmentManager = getSupportFragmentManager();

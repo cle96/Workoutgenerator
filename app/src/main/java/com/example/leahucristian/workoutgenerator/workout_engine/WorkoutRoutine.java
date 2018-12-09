@@ -7,7 +7,7 @@ import org.json.JSONObject;
 
 public class WorkoutRoutine {
 	public enum Type {
-		PYRAMID, TABATA, KILLER
+		PYRAMID, TABATA, KILLER, STRENGTH
 	};
 
 	private Type type;
@@ -82,7 +82,7 @@ public class WorkoutRoutine {
 	private String returnTabata() {
 		String result = "";
 		for (Exercise e : exercises) {
-			result += e.getName() + " for " + this.seconds + " seconds\n";
+			result += e.getName() + " for " + this.seconds + " seconds at -> ~" + ExerciseHelper.getMax(e.getName(), Type.TABATA) + "\n";
 		}
 		return result;
 	}
@@ -91,7 +91,7 @@ public class WorkoutRoutine {
 		String result = "";
 		for (int i = 0; i < 3; i++) {
 			for (Exercise e : exercises) {
-				result += e.getName() +" "+ this.repetitions + " repetition, at " + (80 - (i * 10)) + "%\n";
+				result += e.getName() + " " + this.repetitions + " repetition at -> ~" + ExerciseHelper.getMax(e.getName(), Type.KILLER) + "\n";
 			}
 		}
 		return result;
@@ -100,7 +100,7 @@ public class WorkoutRoutine {
 	private String returnPyramid() {
 		String result = "";
 		for (Exercise e : exercises) {
-			result += e.getName() + " for " + this.repetitions + " repetitions\n";
+			result += e.getName() + " " + this.repetitions + " repetitions at -> ~" + ExerciseHelper.getMax(e.getName(), Type.PYRAMID) + "\n";
 		}
 		return result;
 	}

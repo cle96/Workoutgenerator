@@ -1,5 +1,6 @@
 package com.example.leahucristian.workoutgenerator.workout_engine;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -40,9 +41,11 @@ public class WeeklyWorkout {
 		JSONObject json = new JSONObject();
 		try {
 			json.put("level", this.level);
+			JSONArray jsonArray = new JSONArray();
 			for(Workout w: this.workouts) {
-				json.accumulate("workouts", w.toJSON());
+				jsonArray.put(w.toJSON());
 			}
+			json.put("workouts", jsonArray);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}

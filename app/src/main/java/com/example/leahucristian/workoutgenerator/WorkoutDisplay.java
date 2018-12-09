@@ -57,13 +57,6 @@ public class WorkoutDisplay extends Fragment {
             String dates = jsonObject.getString("dates");
             workouts = jsonObject.getJSONArray("workouts");
             ArrayList<String> timestamps = new ArrayList<String>(Arrays.asList(dates.substring(1, dates.length() - 1).split(", ")));
-//            for(String s: timestamps){
-//                SimpleDateFormat toDate = new SimpleDateFormat("");
-//                Date d = toDate.parse(s);
-//                SimpleDateFormat dateFormatter = new SimpleDateFormat("EEEE, MMMM d, yyyy");
-//                Log.d("JSON", dateFormatter.format(d));
-//                Log.d("JSON", s);
-//            }
             arrayList = timestamps;
         } catch (Exception e) {
             e.printStackTrace();

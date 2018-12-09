@@ -1,7 +1,12 @@
 package com.example.leahucristian.workoutgenerator.workout_engine;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import android.app.Application;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
+import com.example.leahucristian.workoutgenerator.MainActivity;
+
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -44,5 +49,22 @@ public class ExerciseHelper {
                 "https://www.crossfit.com/exercisedemos/");
 
         return exercises;
+    }
+
+    public static String getMax(String ex, WorkoutRoutine.Type type){
+        int amount = MainActivity.preferences.getInt(ex,0);
+        if(type == WorkoutRoutine.Type.KILLER){
+            amount = amount - (amount / 5);
+        }
+
+        if(type == WorkoutRoutine.Type.PYRAMID){
+            amount = amount - (amount / 4);
+        }
+
+        if(type == WorkoutRoutine.Type.TABATA){
+            amount = amount - (amount / 3);
+        }
+
+        return amount + "";
     }
 }
