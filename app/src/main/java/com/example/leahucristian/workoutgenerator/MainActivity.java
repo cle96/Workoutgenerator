@@ -1,6 +1,7 @@
 package com.example.leahucristian.workoutgenerator;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -14,6 +15,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.leahucristian.workoutgenerator.workout_engine.ExerciseStore;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -97,10 +101,33 @@ public class MainActivity extends AppCompatActivity
             InformationFragment info = new InformationFragment();
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.fragment, info).commit();
+        } else if (id == R.id.nav_send) {
+           shareMessage();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void shareMessage(){
+        int id = preferences.getInt("currentId", 0);
+        if(id == 0) {
+            return;
+        }
+        String json = this.preferences.getString(String.valueOf(id), "");
+        String textInBody = "";
+        try {
+            JSONObject jsonObject = new JSONObject(json);
+            textInBody = jsonObject.get("workouts").toString();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        Intent txtIntent = new Intent(android.content.Intent.ACTION_SEND);
+        txtIntent .setType("text/plain");
+        txtIntent .putExtra(android.content.Intent.EXTRA_SUBJECT, "Workout");
+        txtIntent .putExtra(android.content.Intent.EXTRA_TEXT, textInBody);
+        startActivity(Intent.createChooser(txtIntent ,"Share"));
     }
 }
