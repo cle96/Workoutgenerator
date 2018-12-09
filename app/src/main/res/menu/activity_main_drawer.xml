@@ -16,6 +16,10 @@
             android:id="@+id/nav_new"
             android:icon="@drawable/baseline_fiber_new_24"
             android:title="Create workout" />
+        <item
+            android:id="@+id/information"
+            android:icon="@drawable/baseline_info_24"
+            android:title="Learn about exercises" />
     </group>
 
     <item android:title="Share">

@@ -19,6 +19,7 @@ public class Exercise {
 	private Muscle secondaryTarget;
 	private Muscle[] otherTargets;
 	private int maxWeight;
+	private String information;
 
 	public Exercise(boolean fullBody, String name, Classification classification, Muscle mainTarget,
 			Muscle secondaryTarget, Muscle[] otherTargets) {
@@ -82,6 +83,15 @@ public class Exercise {
 	public String toString() {
 		return this.name + " is an exercise for working out mainly: " + this.getMainTarget()
 				+ " whith a classification of: " + this.getClassification();
+	}
+
+	public String getInformation(){
+		return this.information;
+	}
+
+	public Exercise setInformation(String info) {
+		this.information = info;
+		return this;
 	}
 
 	public String toJSON() {
