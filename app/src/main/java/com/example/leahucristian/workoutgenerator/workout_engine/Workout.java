@@ -109,7 +109,7 @@ public class Workout {
             json.put("strength", this.strength.toJSON());
             for (WorkoutRoutine w : routines) {
                 json.accumulate("routines", w.toJSON());
-                json.put("printer", this.printEntireWorkout());
+                json.put("printer", "Individual warm-up\n\n" + this.printEntireWorkout());
             }
         } catch (JSONException e) {
             e.printStackTrace();
