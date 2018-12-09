@@ -14,6 +14,7 @@ public class Workout {
     private Exercise strength;
     private WorkoutRoutine[] routines;
     private int position;
+    private int eta = 0;
 
     public Workout(DayOfWeek day, Exercise strength, Level level, int position) {
         this.day = day;
@@ -23,12 +24,15 @@ public class Workout {
         switch (level) {
             case BEGINNER:
                 this.routines = generateBeginnerRoutines(level);
+                this.eta = 40;
                 break;
             case INTERMEDIATE:
                 this.routines = generateIntermediateRoutines(level);
+                this.eta = 50;
                 break;
             case ADVANCED:
                 this.routines = generateAdvancedRoutines(level);
+                this.eta = 55;
                 break;
             default:
                 break;
@@ -109,7 +113,8 @@ public class Workout {
             json.put("strength", this.strength.toJSON());
             for (WorkoutRoutine w : routines) {
                 json.accumulate("routines", w.toJSON());
-                json.put("printer", "Individual warm-up\n\n" + this.printEntireWorkout());
+                String routineIntro = "Estimated workout time: "+ this.eta +"\nIndividual warm-up\n\n" ;
+                json.put("printer", routineIntro + this.printEntireWorkout());
             }
         } catch (JSONException e) {
             e.printStackTrace();
